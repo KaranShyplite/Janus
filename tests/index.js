@@ -20,7 +20,7 @@ client.connect().then(async () => {
 	console.log("Redis Client Connected")
 
 	await client.hSet('JanusFeatureList', 'tazapay', JSON.stringify({
-		'sellerIDs': [1],
+		'userIds': [1],
 		'modulus': 10,			// 20%
 		'modulusOffset': 6,		// 5, 10, 15 
 	}));
