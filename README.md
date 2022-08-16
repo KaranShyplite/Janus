@@ -4,14 +4,14 @@
 
 1. Setup `.npmrc` in the repo
 1. Install with npm
-	```
+	```bash
 	npm i @shyplite/janus
 	```
 
 ## Usage
 
 ### Setup 
-```
+```js
 const Janus = require('@shyplite/janus')
 
 let featureToggle = new Janus({
@@ -20,7 +20,7 @@ let featureToggle = new Janus({
 ```
 
 ### ExpressJS Middleware
-```
+```js
 const checkFeatureEnabled = async (req, res, next) => { 
   try {
     if (await featureToggle.checkFeature('FEATURE_NAME',req.headers['userId'])) 
