@@ -4,26 +4,26 @@ class Janus {
 		this.client = props.client
 	}
 
-	evaluateStatus (userIds, feature) {
-		if ((userIds % feature.modulus) == feature.modulusOffset)
+	evaluateStatus (userId, feature) {
+		if ((userId % feature.modulus) == feature.modulusOffset)
 			return true
-		else if (feature?.userIdss?.includes(userIds))
+		else if (feature?.userIds?.includes(userId))
 			return true
 		else
 			return false
 	}
 
-	async checkFeature (name, userIds) {
+	async checkFeature (name, userId) {
 		let feature = await this.client.hGet('JanusFeatureList', name)
 		feature = parseJSON(feature)
 
-		return evaluateStatus(userIds, feature)
+		return evaluateStatus(userId, feature)
 	
 	}
 
-	async getAllFeatures (userIds) {
+	async getAllFeatures (userId) {
 		let features = await this.client.hGetAll('JanusFeatureList')
-		Object.keys(features).forEach(f => features[f] = this.evaluateStatus(userIds, parseJSON(features[f])))
+		Object.keys(features).forEach(f => features[f] = this.evaluateStatus(userId, parseJSON(features[f])))
 		return features	
 	
 	}
